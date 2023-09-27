@@ -18,6 +18,9 @@ use Symfony\Component\DependencyInjection\Loader\{
 use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use GS\EnvProcessor\Contracts\GSEnvProcessorInterface;
+use GS\EnvProcessor\DependencyInjection\IsAbsolutePathVarProcessor;
+use GS\EnvProcessor\DependencyInjection\IsExistsPathVarProcessor;
+use GS\EnvProcessor\DependencyInjection\NormalizePathEnvVarProcessor;
 
 class GSEnvProcessorExtension extends ConfigurableExtension implements PrependExtensionInterface
 {

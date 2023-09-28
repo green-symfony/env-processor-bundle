@@ -17,6 +17,7 @@ use Symfony\Component\DependencyInjection\Loader\{
 };
 use Symfony\Component\HttpKernel\DependencyInjection\ConfigurableExtension;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
+use GS\Service\Service\ServiceContainer;
 use GS\EnvProcessor\Contracts\GSEnvProcessorInterface;
 use GS\EnvProcessor\DependencyInjection\IsAbsolutePathVarProcessor;
 use GS\EnvProcessor\DependencyInjection\IsExistsPathVarProcessor;
@@ -118,11 +119,41 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
 
     private function registerBundleTagsForAutoconfiguration(ContainerBuilder $container)
     {
+		$this->registerEnvProcessors($container);
+    }
+	
+	private function registerEnvProcessors(
+		ContainerBuilder $container,
+	): void {
+		foreach([
+			[
+				IsAbsolutePathVarProcessor::ENV_PROCESSOR_NAME,
+				IsAbsolutePathVarProcessor::class,
+			],
+			[
+				IsExistsPathVarProcessor::ENV_PROCESSOR_NAME,
+				IsExistsPathVarProcessor::class,
+			],
+			[
+				NormalizePathEnvVarProcessor::ENV_PROCESSOR_NAME,
+				NormalizePathEnvVarProcessor::class,
+			],
+		] as [ $id, $class ]) {
+			$container
+				->setDefinition(
+					ServiceContainer::getParameterName(self::PREFIX, $id),
+					(new Definition($class))
+						->setAutoconfigured(true) // for registerForAutoconfiguration
+					,
+				)
+				
+			;
+		}
         $container
             ->registerForAutoconfiguration(GSEnvProcessorInterface::class)
-            ->addTag('container.env_var_processor')
+			->addTag('container.env_var_processor')
         ;
-    }
+	}
 
     /**
         @var    $relPath is a relPath or array with the following structure:

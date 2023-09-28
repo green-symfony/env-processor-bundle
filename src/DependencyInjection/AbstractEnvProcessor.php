@@ -19,7 +19,7 @@ abstract class AbstractEnvProcessor implements GSEnvProcessorInterface
 	//###< CHANGE ME ###
 	
 	
-	//###> API ###
+	//###> REALIZED ABSTRACT ###
     
 	public static function getProvidedTypes(): array
     {
@@ -28,5 +28,5 @@ abstract class AbstractEnvProcessor implements GSEnvProcessorInterface
         ];
     }
 	
-	//###< API ###
+	//###< REALIZED ABSTRACT ###
 }

@@ -26,6 +26,8 @@ use GS\EnvProcessor\DependencyInjection\NormalizePathEnvVarProcessor;
 class GSEnvProcessorExtension extends ConfigurableExtension implements PrependExtensionInterface
 {
     public const PREFIX = 'gs_env_processor';
+ 
+	public const LOCALE = 'locale';
 	
 	public function __construct() {
 		
@@ -42,7 +44,7 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
     public function prepend(ContainerBuilder $container)
     {
         $this->loadYaml($container, [
-            //['config/packages', 'translation.yaml'],
+            ['config/packages', 'translation.yaml'],
         ]);
     }
 
@@ -97,7 +99,7 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
             },
             parameterPrefix: self::PREFIX,
             keys: [
-				self::<>,
+				self::LOCALE,
             ],
         );
         */
@@ -119,8 +121,18 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
 
     private function registerBundleTagsForAutoconfiguration(ContainerBuilder $container)
     {
-		$this->registerEnvProcessors($container);
+		$this->bindIntoServiceContainer(
+			$container,
+		);
+		$this->registerEnvProcessors(
+			$container,
+		);
     }
+	
+	private function bindIntoServiceContainer(
+		ContainerBuilder $container,
+	): void {
+	}
 	
 	private function registerEnvProcessors(
 		ContainerBuilder $container,
@@ -144,6 +156,7 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
 					ServiceContainer::getParameterName(self::PREFIX, $id),
 					(new Definition($class))
 						->setAutoconfigured(true) // for registerForAutoconfiguration
+						->setAutowired(true) // for services
 					,
 				)
 				

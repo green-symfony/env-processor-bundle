@@ -1,0 +1,3 @@
+exception:
+    must_exist: 'The path "%path%" must be existing!'
+    must_be_absolute: 'The path "%path%" must be absolute!'

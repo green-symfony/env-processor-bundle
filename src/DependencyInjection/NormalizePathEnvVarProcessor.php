@@ -1,6 +1,7 @@
 <?php
 
 namespace GS\EnvProcessor\DependencyInjection;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 use Symfony\Component\Filesystem\Path;
 
@@ -10,6 +11,14 @@ class NormalizePathEnvVarProcessor extends AbstractEnvProcessor
 	public const ENV_PROCESSOR_NAME = 'normalize_path';
 	
 	public const ENV_PROCESSOR_TYPE = 'string';
+	
+	public function __construct(
+		TranslatorInterface $t,
+	) {
+		parent::__construct(
+			t: $t,
+		);
+	}
 	
 	
     public function getEnv(

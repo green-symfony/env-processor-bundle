@@ -5,4 +5,7 @@ services:
         public:             false
         autowire:           false
         autoconfigure:      false
-            
+
+        bind:
+            ###> LIB SERVICES ###
+            ###< LIB SERVICES ###

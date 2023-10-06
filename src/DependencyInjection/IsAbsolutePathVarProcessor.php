@@ -5,6 +5,7 @@ namespace GS\EnvProcessor\DependencyInjection;
 use Symfony\Component\Filesystem\{
     Path
 };
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class IsAbsolutePathVarProcessor extends AbstractEnvProcessor
 {
@@ -12,6 +13,14 @@ class IsAbsolutePathVarProcessor extends AbstractEnvProcessor
 	public const ENV_PROCESSOR_NAME = 'is_absolute_path';
 	
 	public const ENV_PROCESSOR_TYPE = 'string';
+	
+	public function __construct(
+		TranslatorInterface $t,
+	) {
+		parent::__construct(
+			t: $t,
+		);
+	}
 	
     public function getEnv(
         string $prefix,
@@ -21,10 +30,12 @@ class IsAbsolutePathVarProcessor extends AbstractEnvProcessor
         $path   = $getEnv($name);
 
         if (!Path::isAbsolute($path)) {
-            throw new \Exception(
-                'Путь "' . $path . '"'
-                . ' ' . 'должен быть абсолютным!'
-            );
+            throw new \Exception($this->trans(
+                'exception.must_be_absolute',
+				[
+					'%path%' => $path,
+				],
+            ));
         }
 
         return $path;

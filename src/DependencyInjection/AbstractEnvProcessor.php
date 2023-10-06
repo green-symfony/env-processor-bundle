@@ -6,9 +6,15 @@ use Symfony\Component\Filesystem\{
     Path
 };
 use GS\EnvProcessor\Contracts\GSEnvProcessorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class AbstractEnvProcessor implements GSEnvProcessorInterface
 {
+	public function __construct(
+		protected readonly TranslatorInterface $t,
+	) {
+	}
+	
 	//###> CHANGE ME ###
 	
 	/* You can already use this env processor name */
@@ -29,4 +35,20 @@ abstract class AbstractEnvProcessor implements GSEnvProcessorInterface
     }
 	
 	//###< REALIZED ABSTRACT ###
+	
+	
+	//###> API ###
+	
+	protected function trans(
+		string $message,
+		array $parameters = [],
+	): string {
+		return $this->t->trans(
+			$message,
+			parameters: $parameters,
+		);
+	}
+	
+	//###< API ###
+	
 }

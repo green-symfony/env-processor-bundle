@@ -29,7 +29,7 @@ cd "YOUR_PROJECT_PATH"
 ```
 
 ```console
-mkdir "./bundles/green-symfony"
+mkdir "./bundles/green-symfony" -p
 ```
 
 ```console

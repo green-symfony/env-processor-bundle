@@ -2,9 +2,7 @@
 
 namespace GS\EnvProcessor\DependencyInjection;
 
-use Symfony\Component\Filesystem\{
-    Path
-};
+use Symfony\Component\Filesystem\Path;
 
 class NormalizePathEnvVarProcessor extends AbstractEnvProcessor
 {

@@ -6,8 +6,8 @@ use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\DependencyInjection\Definition;
 use GS\EnvProcessor\Configuration;
 use Symfony\Component\DependencyInjection\{
-	Parameter,
-	Reference
+    Parameter,
+    Reference
 };
 use Symfony\Component\DependencyInjection\Extension\Extension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -26,15 +26,15 @@ use GS\EnvProcessor\DependencyInjection\NormalizePathEnvVarProcessor;
 class GSEnvProcessorExtension extends ConfigurableExtension implements PrependExtensionInterface
 {
     public const PREFIX = 'gs_env_processor';
-	
-	public function __construct() {
-		
-	}
-	
-	public function getAlias(): string
+
+    public function __construct()
     {
-		return self::PREFIX;
-	}
+    }
+
+    public function getAlias(): string
+    {
+        return self::PREFIX;
+    }
 
     /**
         -   load packages .yaml
@@ -50,7 +50,7 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
         array $config,
         ContainerBuilder $container,
     ) {
-		return new Configuration();
+        return new Configuration();
     }
 
     /**
@@ -64,16 +64,16 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
             ['config', 'services.yaml'],
         ]);
         $this->setParametersFromBundleConfiguration(
-			$config,
-			$container,
-		);
+            $config,
+            $container,
+        );
         $this->createServicesWithConfigArgumentsOfTheCurrentBundle(
-			$config,
-			$container,
-		);
+            $config,
+            $container,
+        );
         $this->registerBundleTagsForAutoconfiguration(
-			$container,
-		);
+            $container,
+        );
     }
 
     //###> HELPERS ###
@@ -87,9 +87,9 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
             $container->hasParameter('error_prod_logger_email'),
             PropertyAccess::createPropertyAccessor()->getValue($config, '[error_prod_logger_email][from]'),
         );
-		
-		$pa = PropertyAccess::createPropertyAccessor();
-		
+
+        $pa = PropertyAccess::createPropertyAccessor();
+
         ServiceContainer::setParametersForce(
             $container,
             callbackGetValue: static function ($key) use (&$config, $pa) {
@@ -97,18 +97,18 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
             },
             parameterPrefix: self::PREFIX,
             keys: [
-				self::LOCALE,
+                self::LOCALE,
             ],
         );
         */
-		
-		/* to use in this object */
-		/*
-		$this-><>Parameter = new Parameter(ServiceContainer::getParameterName(
-			self::PREFIX,
-			self::<>,
-		));
-		*/
+
+        /* to use in this object */
+        /*
+        $this-><>Parameter = new Parameter(ServiceContainer::getParameterName(
+            self::PREFIX,
+            self::<>,
+        ));
+        */
     }
 
     private function createServicesWithConfigArgumentsOfTheCurrentBundle(
@@ -119,52 +119,53 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
 
     private function registerBundleTagsForAutoconfiguration(ContainerBuilder $container)
     {
-		$this->bindIntoServiceContainer(
-			$container,
-		);
-		$this->registerEnvProcessors(
-			$container,
-		);
+        $this->bindIntoServiceContainer(
+            $container,
+        );
+        $this->registerEnvProcessors(
+            $container,
+        );
     }
-	
-	private function bindIntoServiceContainer(
-		ContainerBuilder $container,
-	): void {
-	}
-	
-	private function registerEnvProcessors(
-		ContainerBuilder $container,
-	): void {
-		foreach([
-			[
-				IsAbsolutePathVarProcessor::ENV_PROCESSOR_NAME,
-				IsAbsolutePathVarProcessor::class,
-			],
-			[
-				IsExistsPathVarProcessor::ENV_PROCESSOR_NAME,
-				IsExistsPathVarProcessor::class,
-			],
-			[
-				NormalizePathEnvVarProcessor::ENV_PROCESSOR_NAME,
-				NormalizePathEnvVarProcessor::class,
-			],
-		] as [ $id, $class ]) {
-			$container
-				->setDefinition(
-					ServiceContainer::getParameterName(self::PREFIX, $id),
-					(new Definition($class))
-						->setAutoconfigured(true) // for registerForAutoconfiguration
-						->setAutowired(true) // for services
-					,
-				)
-				
-			;
-		}
+
+    private function bindIntoServiceContainer(
+        ContainerBuilder $container,
+    ): void {
+    }
+
+    private function registerEnvProcessors(
+        ContainerBuilder $container,
+    ): void {
+        foreach (
+            [
+            [
+                IsAbsolutePathVarProcessor::ENV_PROCESSOR_NAME,
+                IsAbsolutePathVarProcessor::class,
+            ],
+            [
+                IsExistsPathVarProcessor::ENV_PROCESSOR_NAME,
+                IsExistsPathVarProcessor::class,
+            ],
+            [
+                NormalizePathEnvVarProcessor::ENV_PROCESSOR_NAME,
+                NormalizePathEnvVarProcessor::class,
+            ],
+            ] as [ $id, $class ]
+        ) {
+            $container
+                ->setDefinition(
+                    ServiceContainer::getParameterName(self::PREFIX, $id),
+                    (new Definition($class))
+                        ->setAutoconfigured(true) // for registerForAutoconfiguration
+                        ->setAutowired(true), // for services
+                )
+
+            ;
+        }
         $container
             ->registerForAutoconfiguration(GSEnvProcessorInterface::class)
-			->addTag('container.env_var_processor')
+            ->addTag('container.env_var_processor')
         ;
-	}
+    }
 
     /**
         @var    $relPath is a relPath or array with the following structure:

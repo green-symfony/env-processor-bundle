@@ -1,23 +1,24 @@
 <?php
 
 namespace GS\EnvProcessor\DependencyInjection;
+
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class IsExistsPathVarProcessor extends AbstractEnvProcessor
 {
-	/* You can already use this env processor name */
-	public const ENV_PROCESSOR_NAME = 'is_exists_path';
-	
-	public const ENV_PROCESSOR_TYPE = 'string';
-	
-	public function __construct(
-		TranslatorInterface $t,
-	) {
-		parent::__construct(
-			t: $t,
-		);
-	}
-	
+    /* You can already use this env processor name */
+    public const ENV_PROCESSOR_NAME = 'is_exists_path';
+
+    public const ENV_PROCESSOR_TYPE = 'string';
+
+    public function __construct(
+        TranslatorInterface $t,
+    ) {
+        parent::__construct(
+            t: $t,
+        );
+    }
+
     public function getEnv(
         string $prefix,
         string $name,
@@ -28,9 +29,9 @@ class IsExistsPathVarProcessor extends AbstractEnvProcessor
         if (!\file_exists($path)) {
             throw new \Exception($this->trans(
                 'exception.must_exist',
-				[
-					'%path%' => $path,
-				],
+                [
+                    '%path%' => $path,
+                ],
             ));
         }
 

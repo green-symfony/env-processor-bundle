@@ -28,7 +28,6 @@ In your `%kernel.project_dir%/composer.json`
 ```json
 "require": {
 	"green-symfony/env-processor-bundle": "VERSION"
-	"green-symfony/service-bundle": "VERSION"
 },
 "repositories": [
 	{

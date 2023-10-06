@@ -6,9 +6,9 @@ env-rocessor-bundle
 This bundle provides the following env-processors names:
 | Env Processor's names | Description | Code |
 | ------------- | ------------- | ------------- |
-| is_absolute_path | This path must be absolute | if (!\Symfony\Component\Filesystem\Path::isAbsolute(YOUR_ENV)) { <br> new \Exception; <br> } |
-| is_exists_path | This path must exist | if (!\file_exists(YOUR_ENV)) { <br> new \Exception(...); <br> } |
-| normalize_path | Replaces php's \DIRECTORY_SEPARATOR with "/" | Applies to the string: `reutrn \Symfony\Component\Filesystem\Path::normalize(YOUR_ENV)` |
+| is_absolute_path | This path must be absolute | (code)[https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/IsAbsolutePathVarProcessor.php] |
+| is_exists_path | This path must exist | (code)[https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/IsExistsPathVarProcessor.php] |
+| normalize_path | Replaces php's \DIRECTORY_SEPARATOR with "/" | (code)[https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/NormalizePathEnvVarProcessor.php] |
 
 ## Installation
 

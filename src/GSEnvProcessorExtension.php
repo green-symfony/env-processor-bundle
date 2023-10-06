@@ -26,8 +26,6 @@ use GS\EnvProcessor\DependencyInjection\NormalizePathEnvVarProcessor;
 class GSEnvProcessorExtension extends ConfigurableExtension implements PrependExtensionInterface
 {
     public const PREFIX = 'gs_env_processor';
- 
-	public const LOCALE = 'locale';
 	
 	public function __construct() {
 		

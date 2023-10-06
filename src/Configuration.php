@@ -29,11 +29,7 @@ class Configuration implements ConfigurationInterface
 			)
             ->children()
 			
-				->scalarNode(GSEnvProcessorExtension::LOCALE)
-					->isRequired()//->defaultValue($this->locale)
-                    ->info('User\'s locale')
-                    //->defaultValue('%gs_generic_parts.locale%') Don't work, it's a simple string if defaultValue
-                ->end()
+			//...
 				
             ->end()
         ;

@@ -1,4 +1,4 @@
-env-rocessor-bundle
+green-symfony/env-rocessor-bundle
 ========
 
 ## Description

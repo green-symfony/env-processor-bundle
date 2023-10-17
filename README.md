@@ -18,6 +18,7 @@ This bundle provides the following env-processors names:
 
 ```console
 git clone "https://github.com/green-symfony/env-processor-bundle.git"
+git clone "https://github.com/green-symfony/service-bundle.git"
 ```
 
 ### Step 2: Require the bundle
@@ -32,6 +33,10 @@ In your `%kernel.project_dir%/composer.json`
 	{
 		"type": "path",
 		"url": "./bundles/green-symfony/env-processor-bundle"
+	},
+	{
+		"type": "path",
+		"url": "./bundles/green-symfony/service-bundle"
 	}
 ]
 ```

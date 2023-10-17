@@ -7,5 +7,3 @@ services:
         autoconfigure:      false
 
         bind:
-            ###> LIB SERVICES ###
-            ###< LIB SERVICES ###

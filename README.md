@@ -17,7 +17,10 @@ This bundle provides the following env-processors names:
 [Before git clone](https://github.com/green-symfony/docs/blob/main/docs/bundles_green_symfony%20mkdir.md)
 
 ```console
-git clone "https://github.com/green-symfony/env-processor-bundle.git"
+git clone "https://github.com/green-symfony/command-bundle.git"
+```
+
+```console
 git clone "https://github.com/green-symfony/service-bundle.git"
 ```
 

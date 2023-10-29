@@ -24,6 +24,7 @@ use GS\EnvProcessor\DependencyInjection\IsAbsolutePathVarProcessor;
 use GS\EnvProcessor\DependencyInjection\IsExistsPathVarProcessor;
 use GS\EnvProcessor\DependencyInjection\NormalizePathEnvVarProcessor;
 use GS\EnvProcessor\DependencyInjection\RTrimVarProcessor;
+use GS\EnvProcessor\DependencyInjection\IsExistsFileVarProcessor;
 
 class GSEnvProcessorExtension extends ConfigurableExtension implements PrependExtensionInterface
 {
@@ -157,6 +158,11 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
             [
                 RTrimVarProcessor::ENV_PROCESSOR_NAME,
                 RTrimVarProcessor::class,
+				[],
+            ],
+            [
+                IsExistsFileVarProcessor::ENV_PROCESSOR_NAME,
+                IsExistsFileVarProcessor::class,
 				[],
             ],
             ] as [ $id, $class, $args ]

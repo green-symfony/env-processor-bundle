@@ -4,12 +4,13 @@ green-symfony/env-rocessor-bundle
 ## Description
 
 This bundle provides the following env-processors names:
-| Env Processor's names | Description | Code |
-| ------------- | ------------- | ------------- |
-| is_absolute_path | This path must be absolute | [code](https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/IsAbsolutePathVarProcessor.php) |
-| is_exists_path | This path must exist | [code](https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/IsExistsPathVarProcessor.php) |
-| normalize_path | Replaces php's \DIRECTORY_SEPARATOR with "/" | [code](https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/NormalizePathEnvVarProcessor.php) |
-| gs_r_trim_with_param | php's \rtrim() | [code](https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/RTrimVarProcessor.php) |
+| Env Processor's names | Description |
+| ------------- | ------------- |
+| [is_absolute_path](https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/IsAbsolutePathVarProcessor.php) | This path must be absolute |
+| [is_exists_path](https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/IsExistsPathVarProcessor.php) | This path must exist |
+| [is_exists_file](https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/IsExistsFileVarProcessor.php) | The path of the existing file |
+| [normalize_path](https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/NormalizePathEnvVarProcessor.php) | Replaces php's \DIRECTORY_SEPARATOR with "/" |
+| [gs_r_trim_with_param](https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/RTrimVarProcessor.php) | php's \rtrim() |
 
 ## Installation
 

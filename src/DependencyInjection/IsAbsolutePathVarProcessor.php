@@ -10,9 +10,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class IsAbsolutePathVarProcessor extends AbstractEnvProcessor
 {
     /* You can already use this env processor name */
-    public const ENV_PROCESSOR_NAME = 'is_absolute_path';
+	public const ENV_PROCESSOR_NAME = 'is_absolute_path';
 
-    public const ENV_PROCESSOR_TYPE = 'string';
+	public const ENV_PROCESSOR_TYPES = 'string';
 
     public function __construct(
         TranslatorInterface $t,

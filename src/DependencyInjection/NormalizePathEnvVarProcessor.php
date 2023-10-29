@@ -8,9 +8,9 @@ use Symfony\Component\Filesystem\Path;
 class NormalizePathEnvVarProcessor extends AbstractEnvProcessor
 {
     /* You can already use this env processor name */
-    public const ENV_PROCESSOR_NAME = 'normalize_path';
+	public const ENV_PROCESSOR_NAME = 'normalize_path';
 
-    public const ENV_PROCESSOR_TYPE = 'string';
+	public const ENV_PROCESSOR_TYPES = 'string';
 
     public function __construct(
         TranslatorInterface $t,

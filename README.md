@@ -9,6 +9,7 @@ This bundle provides the following env-processors names:
 | is_absolute_path | This path must be absolute | [code](https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/IsAbsolutePathVarProcessor.php) |
 | is_exists_path | This path must exist | [code](https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/IsExistsPathVarProcessor.php) |
 | normalize_path | Replaces php's \DIRECTORY_SEPARATOR with "/" | [code](https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/NormalizePathEnvVarProcessor.php) |
+| gs_r_trim_with_param | php's \rtrim() | [code](https://github.com/green-symfony/env-processor-bundle/blob/main/src/DependencyInjection/RTrimVarProcessor.php) |
 
 ## Installation
 

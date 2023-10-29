@@ -2,6 +2,7 @@
 
 namespace GS\EnvProcessor;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\DependencyInjection\AddEventAliasesPass;
 use GS\EnvProcessor\GSEnvProcessorExtension;
 use Symfony\Component\HttpKernel\Bundle\AbstractBundle;
@@ -12,7 +13,7 @@ use Symfony\Component\DependencyInjection\Extension\ExtensionInterface;
 use Symfony\Component\DependencyInjection\Compiler\ResolveEnvPlaceholdersPass;
 
 class GSEnvProcessorBundle extends Bundle
-{
+{	
     public function getPath(): string
     {
         return \dirname(__DIR__);

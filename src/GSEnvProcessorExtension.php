@@ -2,6 +2,7 @@
 
 namespace GS\EnvProcessor;
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\DependencyInjection\Definition;
 use GS\EnvProcessor\Configuration;
@@ -22,13 +23,14 @@ use GS\EnvProcessor\Contracts\GSEnvProcessorInterface;
 use GS\EnvProcessor\DependencyInjection\IsAbsolutePathVarProcessor;
 use GS\EnvProcessor\DependencyInjection\IsExistsPathVarProcessor;
 use GS\EnvProcessor\DependencyInjection\NormalizePathEnvVarProcessor;
+use GS\EnvProcessor\DependencyInjection\RTrimVarProcessor;
 
 class GSEnvProcessorExtension extends ConfigurableExtension implements PrependExtensionInterface
 {
     public const PREFIX = 'gs_env_processor';
 
-    public function __construct()
-    {
+    public function __construct(
+	) {
     }
 
     public function getAlias(): string
@@ -42,6 +44,7 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
     public function prepend(ContainerBuilder $container)
     {
         $this->loadYaml($container, [
+            ['config', 'services.yaml'],
             ['config/packages', 'translation.yaml'],
         ]);
     }
@@ -61,7 +64,6 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
     public function loadInternal(array $config, ContainerBuilder $container)
     {
         $this->loadYaml($container, [
-            ['config', 'services.yaml'],
         ]);
         $this->setParametersFromBundleConfiguration(
             $config,
@@ -140,23 +142,32 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
             [
                 IsAbsolutePathVarProcessor::ENV_PROCESSOR_NAME,
                 IsAbsolutePathVarProcessor::class,
+				[],
             ],
             [
                 IsExistsPathVarProcessor::ENV_PROCESSOR_NAME,
                 IsExistsPathVarProcessor::class,
+				[],
             ],
             [
                 NormalizePathEnvVarProcessor::ENV_PROCESSOR_NAME,
                 NormalizePathEnvVarProcessor::class,
+				[],
             ],
-            ] as [ $id, $class ]
+            [
+                RTrimVarProcessor::ENV_PROCESSOR_NAME,
+                RTrimVarProcessor::class,
+				[],
+            ],
+            ] as [ $id, $class, $args ]
         ) {
             $container
                 ->setDefinition(
                     ServiceContainer::getParameterName(self::PREFIX, $id),
                     (new Definition($class))
                         ->setAutoconfigured(true) // for registerForAutoconfiguration
-                        ->setAutowired(true), // for services
+                        ->setAutowired(true) // for services
+                        ->setArguments($args)
                 )
 
             ;

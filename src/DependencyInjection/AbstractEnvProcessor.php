@@ -17,21 +17,34 @@ abstract class AbstractEnvProcessor implements GSEnvProcessorInterface
 
     //###> CHANGE ME ###
 
-    /* You can already use this env processor name */
-    //public const ENV_PROCESSOR_NAME = '!CHANGE ME!';
+    /* You can already use this env processor name
+	
+	public const ENV_PROCESSOR_NAME = '!CHANGE_ME!';
 
-    //public const ENV_PROCESSOR_TYPE = '!CHANGE ME!';
+	public const ENV_PROCESSOR_TYPES = [ 
+		'!CHANGE_ME!',
+	]; // or JUST STRING
+	*/
 
     //###< CHANGE ME ###
 
 
     //###> REALIZED ABSTRACT ###
 
+	/*
+		[
+			'NAME_ENV_PROCESSOR' => 'ALL|ITS|TYPES',
+		]
+	*/
     public static function getProvidedTypes(): array
     {
+		$types = static::ENV_PROCESSOR_TYPES;
+		
+		if (!\is_array($types)) $types = [$types];
+		
         return [
-            static::ENV_PROCESSOR_NAME => static::ENV_PROCESSOR_TYPE,
-        ];
+			static::ENV_PROCESSOR_NAME => \implode('|', $types),
+		];
     }
 
     //###< REALIZED ABSTRACT ###

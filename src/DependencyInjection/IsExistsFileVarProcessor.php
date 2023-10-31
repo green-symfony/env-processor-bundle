@@ -28,13 +28,14 @@ class IsExistsFileVarProcessor extends AbstractEnvProcessor
 
         if (!\file_exists($path) || !\is_file($path)) {
             throw new \Exception($this->trans(
-                'exception.file_must_exist',
-                [
-                    '%path%' => $path,
-                ],
-            ));
+				'exception.file_must_exist',
+				[
+					'%path%' => $env,
+				],
+			));
         }
 
         return $path;
     }
+	
 }

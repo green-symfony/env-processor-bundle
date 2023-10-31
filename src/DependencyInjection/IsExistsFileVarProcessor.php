@@ -30,7 +30,7 @@ class IsExistsFileVarProcessor extends AbstractEnvProcessor
             throw new \Exception($this->trans(
 				'exception.file_must_exist',
 				[
-					'%path%' => $env,
+					'%path%' => $path,
 				],
 			));
         }

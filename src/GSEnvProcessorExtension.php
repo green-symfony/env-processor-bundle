@@ -169,7 +169,7 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
         ) {
             $container
                 ->setDefinition(
-                    ServiceContainer::getParameterName(self::PREFIX, $id),
+                    $id,
                     (new Definition($class))
                         ->setAutoconfigured(true) // for registerForAutoconfiguration
                         ->setAutowired(true) // for services

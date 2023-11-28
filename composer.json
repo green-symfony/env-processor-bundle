@@ -5,7 +5,7 @@
             "GS\\EnvProcessor\\": "src/"
         }
     },
-	"version":		"0.0.0",
+	"version":		"1.0.0",
     "type":			"symfony-bundle",
     "description":	"Env rocessors for extending into Symfony Application.",
     "authors": [

@@ -19,6 +19,7 @@ abstract class AbstractEnvProcessor implements GSEnvProcessorInterface
 
     /* You can already use this env processor name
 	
+	// Uses with PREFIX!
 	public const ENV_PROCESSOR_NAME = '!CHANGE_ME!';
 
 	public const ENV_PROCESSOR_TYPES = [ 
@@ -43,11 +44,20 @@ abstract class AbstractEnvProcessor implements GSEnvProcessorInterface
 		if (!\is_array($types)) $types = [$types];
 		
         return [
-			self::ENV_PROCESSOR_PREFIX . static::ENV_PROCESSOR_NAME => \implode('|', $types),
+			static::getEnvProcessorName() => \implode('|', $types),
 		];
     }
 
     //###< REALIZED ABSTRACT ###
+
+	
+	//###> PUBLIC API ###
+	
+	static public function getEnvProcessorName(): string {
+		return self::ENV_PROCESSOR_PREFIX . static::ENV_PROCESSOR_NAME;
+	}
+	
+	//###< PUBLIC API ###
 
 
     //###> API ###

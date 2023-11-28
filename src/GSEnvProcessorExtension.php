@@ -141,27 +141,27 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
         foreach (
             [
             [
-                IsAbsolutePathVarProcessor::ENV_PROCESSOR_NAME,
+				IsAbsolutePathVarProcessor::getEnvProcessorName(),
                 IsAbsolutePathVarProcessor::class,
 				[],
             ],
             [
-                IsExistsPathVarProcessor::ENV_PROCESSOR_NAME,
+                IsExistsPathVarProcessor::getEnvProcessorName(),
                 IsExistsPathVarProcessor::class,
 				[],
             ],
             [
-                NormalizePathEnvVarProcessor::ENV_PROCESSOR_NAME,
+                NormalizePathEnvVarProcessor::getEnvProcessorName(),
                 NormalizePathEnvVarProcessor::class,
 				[],
             ],
             [
-                RTrimVarProcessor::ENV_PROCESSOR_NAME,
+                RTrimVarProcessor::getEnvProcessorName(),
                 RTrimVarProcessor::class,
 				[],
             ],
             [
-                IsExistsFileVarProcessor::ENV_PROCESSOR_NAME,
+                IsExistsFileVarProcessor::getEnvProcessorName(),
                 IsExistsFileVarProcessor::class,
 				[],
             ],

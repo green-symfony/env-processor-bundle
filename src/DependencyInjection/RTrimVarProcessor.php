@@ -12,7 +12,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class RTrimVarProcessor extends AbstractWithParamsVarProcessor
 {
     /* You can already use this env processor name */
-	public const ENV_PROCESSOR_NAME = 'gs_r_trim_with_param';
+	public const ENV_PROCESSOR_NAME = 'r_trim_with_param';
 	
 	public const ENV_PROCESSOR_TYPES = [
 		'string',

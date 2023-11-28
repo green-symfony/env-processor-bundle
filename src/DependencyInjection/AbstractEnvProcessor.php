@@ -2,14 +2,14 @@
 
 namespace GS\EnvProcessor\DependencyInjection;
 
-use Symfony\Component\Filesystem\{
-    Path
-};
+use Symfony\Component\Filesystem\Path;
 use GS\EnvProcessor\Contracts\GSEnvProcessorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 abstract class AbstractEnvProcessor implements GSEnvProcessorInterface
 {
+	private const ENV_PROCESSOR_PREFIX = 'gs_env_';
+	
     public function __construct(
         protected readonly TranslatorInterface $t,
     ) {
@@ -43,7 +43,7 @@ abstract class AbstractEnvProcessor implements GSEnvProcessorInterface
 		if (!\is_array($types)) $types = [$types];
 		
         return [
-			static::ENV_PROCESSOR_NAME => \implode('|', $types),
+			self::ENV_PROCESSOR_PREFIX . static::ENV_PROCESSOR_NAME => \implode('|', $types),
 		];
     }
 

@@ -7,9 +7,9 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class IsExistsPathVarProcessor extends AbstractEnvProcessor
 {
     /* You can already use this env processor name */
-	public const ENV_PROCESSOR_NAME = 'is_exists_path';
+    public const ENV_PROCESSOR_NAME = 'is_exists_path';
 
-	public const ENV_PROCESSOR_TYPES = 'string';
+    public const ENV_PROCESSOR_TYPES = 'string';
 
     public function __construct(
         TranslatorInterface $t,

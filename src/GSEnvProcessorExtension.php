@@ -30,8 +30,8 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
 {
     public const PREFIX = 'gs_env_processor';
 
-    public function __construct(
-	) {
+    public function __construct()
+    {
     }
 
     public function getAlias(): string
@@ -141,29 +141,29 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
         foreach (
             [
             [
-				IsAbsolutePathVarProcessor::getEnvProcessorName(),
+                IsAbsolutePathVarProcessor::getEnvProcessorName(),
                 IsAbsolutePathVarProcessor::class,
-				[],
+                [],
             ],
             [
                 IsExistsPathVarProcessor::getEnvProcessorName(),
                 IsExistsPathVarProcessor::class,
-				[],
+                [],
             ],
             [
                 NormalizePathEnvVarProcessor::getEnvProcessorName(),
                 NormalizePathEnvVarProcessor::class,
-				[],
+                [],
             ],
             [
                 RTrimVarProcessor::getEnvProcessorName(),
                 RTrimVarProcessor::class,
-				[],
+                [],
             ],
             [
                 IsExistsFileVarProcessor::getEnvProcessorName(),
                 IsExistsFileVarProcessor::class,
-				[],
+                [],
             ],
             ] as [ $id, $class, $args ]
         ) {

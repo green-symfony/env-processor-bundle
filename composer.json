@@ -18,11 +18,11 @@
     "license": "MIT",
     "require": {
         "php": ">=7",
-        "symfony/config": "6.*",
-        "green-symfony/service-bundle": "*",
-        "symfony/filesystem": "6.*",
-        "symfony/dependency-injection": "6.*",
-        "symfony/translation": "6.*"
+        "symfony/config": ">=6",
+        "green-symfony/service-bundle": ">=1",
+        "symfony/filesystem": ">=6",
+        "symfony/dependency-injection": ">=6",
+        "symfony/translation": ">=6"
     },
     "repositories": [
 		{

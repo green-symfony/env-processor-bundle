@@ -47,6 +47,7 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
         $this->loadYaml($container, [
             ['config', 'services.yaml'],
             ['config/packages', 'translation.yaml'],
+            ['config/packages', 'gs_env_processor.yaml'],
         ]);
     }
 
@@ -62,7 +63,7 @@ class GSEnvProcessorExtension extends ConfigurableExtension implements PrependEx
         -   config->services
         -   bundle's tags
     */
-    public function loadInternal(array $config, ContainerBuilder $container)
+    public function loadInternal(array $config, ContainerBuilder $container): void
     {
         $this->loadYaml($container, [
         ]);
